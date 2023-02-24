@@ -1,13 +1,53 @@
-AllCops:
-  TargetRubyVersion: 2.6
+# Hashの key/value の記述方法についてkey: value 形式を有効とする
+Style/HashSyntax:
+  EnforcedStyle: ruby19
 
-Style/StringLiterals:
-  Enabled: true
+# 変数展開やエスケープの必要がない場合はダブルクォートを利用する
+StringLiterals:
   EnforcedStyle: double_quotes
 
+# パーセント記法の記号について とりあえずすべて()
+PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%':  ()
+    '%i': ()
+    '%q': ()
+    '%Q': ()
+    '%r': ()
+    '%s': ()
+    '%w': ()
+    '%W': ()
+    '%x': ()
+
+# 式展開中でもダブルクォートを使う
 Style/StringLiteralsInInterpolation:
-  Enabled: true
   EnforcedStyle: double_quotes
 
-Layout/LineLength:
-  Max: 120
+# 日本語コメントを許容する
+Style/AsciiComments:
+  Enabled: false
+
+# 鬱陶しいのでfrozen_string_literalは書かなくてもいいことにする
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# required_ruby_versionはまだ指定しない
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+# initialize classにsuperを強制しない
+Lint/MissingSuper:
+  Enabled: false
+
+#メソッド行上限を20行にする
+Metrics/MethodLength:
+  Max: 20
+
+# トップディレクトリ(レポジトリの1階層上のディレクトリ)まで含めようとするので無効化する
+Style/Documentation:
+  Enabled: false
+
+# rubocopコマンドで出てくるwarningがうざいので無効にする
+AllCops:
+  NewCops: disable
+  TargetRubyVersion: 2.6
